@@ -10,9 +10,15 @@ var client = dgram.createSocket('udp4');
 
 
 client.on('message', (msg, rinfo) => {
+	var param = msg.toString().split(';');
 	
-	console.log(msg);
-	console.log(message);
+	if(param[0] == 'ROUND STARTING') {
+		var message = new Buffer('JOIN;' + param[1]);
+		client.send(message, 0, message.length, PORT, HOST, function(err, bytes) {
+			console.log(err);
+		});
+	}
+	console.log(param);
 });
 
 var message = new Buffer('REGISTER;JT');
