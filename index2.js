@@ -23,22 +23,18 @@ client.on('message', (msg, rinfo) => {
 		
 		ourDiceRoll = param[1].split(',');
 		console.log('+++++ROLLED' + ourDiceRoll[0] + ',' + ourDiceRoll[1] );
-		//answer('ANNOUNCE', ourDiceRoll.join(',') + ';' + param[2]);
+		
 		var ourScore = ourDiceRoll[0] * 10 + ourDiceRoll[1];
 		var opponentScore = opponentDiceRoll[0] * 10 + opponentDiceRoll[1];
 		
-		 if (ourDiceRoll[0] === ourDiceRoll[1])
-		 {
-		 answer('ANNOUNCE', ourDiceRoll.join(',') + ';' + param[2])
-		 } 
-		 else if (ourDiceRoll[0] === 2 && ourDiceRoll[1] === 1) {
-		 answer('ANNOUNCE', ourDiceRoll.join(',') + ';' + param[2])
-		 } 
-		  else if (ourScore > opponentScore) {
-		 answer('ANNOUNCE', ourDiceRoll.join(',') + ';' + param[2])
-		 } 
-		 else 
-		 {
+		if(ourDiceRoll[0] === ourDiceRoll[1]) ourScore = ourScore * 100;
+		if(opponentDiceRoll[0] === opponentDiceRoll[1]) opponentScore = opponentScore * 100;
+		
+		 if (ourDiceRoll[0] === 2 && ourDiceRoll[1] === 1) {
+			 answer('ANNOUNCE', ourDiceRoll.join(',') + ';' + param[2])
+		 } else if (ourScore > opponentScore) {
+			answer('ANNOUNCE', ourDiceRoll.join(',') + ';' + param[2])
+		 } else {
 		  	 answer('ANNOUNCE', [6,6].join(',')+ ';' + param[2]);
 		 }
 		 	
