@@ -9,6 +9,7 @@ var dgram = require('dgram');
 var client = dgram.createSocket('udp4');
 var ourDiceRoll = [0,0];
 var opponentDiceRoll = [0,0];
+//var values = {[2,1], [3,1]} 
 
 client.on('message', (msg, rinfo) => {
 	var param = msg.toString().split(';');
@@ -22,7 +23,24 @@ client.on('message', (msg, rinfo) => {
 		
 		ourDiceRoll = param[1].split(',');
 		console.log('+++++ROLLED' + ourDiceRoll[0] + ',' + ourDiceRoll[1] );
-		answer('ANNOUNCE', ourDiceRoll.join(',')+ ';'+param[2])
+		//answer('ANNOUNCE', ourDiceRoll.join(',') + ';' + param[2]);
+		var ourScore = ourDiceRoll[0] * 10 + ourDiceRoll[1];
+		var opponentScore = opponentDiceRoll[0] * 10 + opponentDiceRoll[1];
+		
+		 if (ourDiceRoll[0] === ourDiceRoll[1])
+		 {
+		 answer('ANNOUNCE', ourDiceRoll.join(',') + ';' + param[2])
+		 } 
+		 else if (ourDiceRoll[0] === 2 && ourDiceRoll[1] === 1) {
+		 answer('ANNOUNCE', ourDiceRoll.join(',') + ';' + param[2])
+		 } 
+		  else if (ourDiceRoll[0] < opponentDiceRoll[0] && ourDiceRoll[1] === 1) {
+		 answer('ANNOUNCE', ourDiceRoll.join(',') + ';' + param[2])
+		 } 
+		 else 
+		 {
+		  	 answer('ANNOUNCE', [6,6].join(',')+ ';' + param[2]);
+		 }
 		 	
 	} else if(param[0] == 'ANNOUNCED' ) {
 		console.log('++ANNOUNCED' + param[1]);

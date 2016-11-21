@@ -3,6 +3,7 @@ var pre = require('mocha').before;
 var assertions = require('mocha').it;
 var assert = require('chai').assert;
 
+var values = {[2,1], [3,1]};
 
 describe('mocha+assert API description', function() {
 
