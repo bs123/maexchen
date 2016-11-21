@@ -34,7 +34,7 @@ client.on('message', (msg, rinfo) => {
 		 else if (ourDiceRoll[0] === 2 && ourDiceRoll[1] === 1) {
 		 answer('ANNOUNCE', ourDiceRoll.join(',') + ';' + param[2])
 		 } 
-		  else if (ourDiceRoll[0] < opponentDiceRoll[0] && ourDiceRoll[1] === 1) {
+		  else if (ourScore > opponentScore) {
 		 answer('ANNOUNCE', ourDiceRoll.join(',') + ';' + param[2])
 		 } 
 		 else 
