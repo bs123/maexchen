@@ -1,0 +1,19 @@
+{
+  "name": "maexchen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocker"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bs123/maexchen.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bs123/maexchen/issues"
+  },
+  "homepage": "https://github.com/bs123/maexchen#readme"
+}
